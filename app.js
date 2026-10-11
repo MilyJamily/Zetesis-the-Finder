@@ -91,3 +91,79 @@ button.addEventListener('click', async function() {
         console.error(error);
     }
 });
+
+const canvas = document.getElementById('gridCanvas');
+const ctx = canvas.getContext('2d');
+
+let width, height;
+let mouse = { x: -1000, y: -1000 };
+
+function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resize);
+window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+});
+
+// initialize canvas size
+resize();
+
+const gridSize = 40;
+const radius = 120; // Magnifying effect
+const maxDistortion = 25; // Força do efeito de lente
+
+function drawGrid() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeStyle = "rgb(0, 255, 240, 0.12)";
+    ctx.lineWidth = 1;
+
+    // Vertical Lines
+    for (let x = 0; x <= width; x += gridSize) {
+        ctx.beginPath();
+        for (let y = 0; y <= height; y += 10) {
+            let dx = x - mouse.x;
+            let dy = y - mouse.y;
+            let dist = Math.sqrt(dx * dy * dy);
+
+            let newX = x;
+            if (dist < radius) {
+                let factor = Math.sin((dist / radius) * Math.PI / 2);
+                let shift = (1 - factor) * maxDistortion;
+                newX += dx > 0 ? shift : -shift;
+            }
+
+            if (y === 0) ctx.moveTo(newX, y);
+            else ctx.lineTo(newX, y);
+        }
+        ctx.stroke();
+    }
+
+    // Horizontal Lines
+    for (let y = 0; y <= height; y += gridSize) {
+        ctx.beginPath();
+        for (let x = 0; x <= width; x += 10) {
+            let dx = x - mouse.x;
+            let dy = y - mouse.y;
+            let dist = Math.sqrt(dx * dx + dy * dy)
+
+            let newY = y;
+            if (dist < radius) {
+                let factor = Math.sin((dist / radius) * Math.PI / 2);
+                let shift = (1 - factor) * maxDistortion;
+                newY += dy > 0 ? shift : -shift;
+            }
+
+            if (x === 0) ctx.moveTo(x, newY);
+            else ctx.lineTo(x, newY);
+        }
+        ctx.stroke();
+    }
+
+    requestAnimationFrame(drawGrid);
+}
+
+drawGrid();

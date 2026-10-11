@@ -7,34 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Canvas para a malha dinâmica com efeito de lupa no mouse -->
+    <canvas id="gridCanvas"></canvas>
 
     <!-- Efeito de lente CRT / olho de peixe -->
     <div class="fisheye-overlay"></div>
 
     <main class="default-container">
-        <!-- Logo completo original do Illustrator -->
+        <!-- Logo minimalista Z -->
         <div class="logo-z">
-           <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 396.99 144.75">
-  <g id="logo_white" data-name="logo white">
-    <g>
-      <circle cx="5.11" cy="118.89" r="5.11" fill="#00fff0"/>
-      <circle cx="114.13" cy="24.94" r="5.11" fill="#00fff0"/>
-      <polyline points="111.68 29.11 42.24 126.64 108.62 126.64 108.62 119.49 123.94 119.49 123.94 144 10.83 144 107.85 0 9.05 0 9.05 17.11 24.62 17.11 24.62 10.47 83.85 10.47 8.28 114.89" fill="#00fff0"/>
-    </g>
-    <polygon points="147.19 117.19 147.19 123.83 171.19 123.83 130.85 83.49 130.85 144 180.13 144 180.13 133.02 167.88 133.02 167.88 137.36 141.58 137.36 141.58 105.96 153.19 117.57 147.19 117.19" stroke="#00fff0" stroke-miterlimit="10" stroke-width="1.5"/>
-    <polygon points="239.51 117.19 239.51 123.83 263.51 123.83 223.17 83.49 223.17 144 272.45 144 272.45 133.02 260.19 133.02 260.19 137.36 233.9 137.36 233.9 105.96 245.51 117.57 239.51 117.19" stroke="#00fff0" stroke-miterlimit="10" stroke-width="1.5"/>
-    <polygon points="216.77 114.38 216.77 126.13 205.28 126.13 205.28 144 190.72 144 190.72 126.13 178.72 126.13 178.72 114.38 190.72 114.38 190.72 99.06 205.28 99.06 205.28 114.38 216.77 114.38" stroke="#00fff0" stroke-miterlimit="10" stroke-width="1.5"/>
-    <polygon points="279.39 132.26 279.39 144 316.83 144 316.83 114.38 291.56 114.38 291.56 102.64 313.51 102.64 320.66 109.79 320.66 94.47 282.11 94.47 282.11 121.53 306.19 121.53 306.19 137.96 286.15 137.96 279.39 132.26" stroke="#00fff0" stroke-miterlimit="10" stroke-width="1.5"/>
-    <polygon points="354.96 132.26 354.96 144 392.41 144 392.41 114.38 367.13 114.38 367.13 102.64 389.09 102.64 396.24 109.79 396.24 94.47 357.68 94.47 357.68 121.53 381.77 121.53 381.77 137.96 361.73 137.96 354.96 132.26" stroke="#00fff0" stroke-miterlimit="10" stroke-width="1.5"/>
-    <g>
-      <circle cx="347.39" cy="93.87" r="5.11" fill="#00fff0"/>
-      <path d="M339.58,102.64c-7.41.75-14.12,13.89-15.32,20.94-.98,5.74.77,10.74,3.83,14.55,3.5,4.35,11.14,6.35,16.09,2.81,4.11-2.94,6.29-9.64,3.57-12.77-2.14-2.46-7.57-2.98-9.7-.26-1.23,1.57.3,3.79-.77,4.6-1.26.95-5.21-.59-6.38-3.32-1.75-4.07,3.07-9.89,5.87-13.28,5.17-6.24,9.56-8.07,8.94-10.47-.47-1.81-3.54-3.07-6.13-2.81h0Z" fill="#00fff0"/>
-    </g>
-  </g>
-</svg>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 150" class="logo-svg">
+                <g>
+                    <circle cx="5.11" cy="118.89" r="5.11" fill="#00fff0"/>
+                    <circle cx="114.13" cy="24.94" r="5.11" fill="#00fff0"/>
+                    <polyline points="111.68 29.11 42.24 126.64 108.62 126.64 108.62 119.49 123.94 119.49 123.94 144 10.83 144 107.85 0 9.05 0 9.05 17.11 24.62 17.11 24.62 10.47 83.85 10.47 8.28 114.89" fill="#00fff0"/>
+                </g>
+            </svg>
         </div>
 
-        <!-- Barra de busca minimalista com a frase e a lupa -->
+        <!-- Search Box com a frase e a lupa -->
         <div class="search-box">
             <input type="text" placeholder="Satisfy your curiosity..." id="searchInput">
             <button type="submit" id="searchBtn" aria-label="Search">

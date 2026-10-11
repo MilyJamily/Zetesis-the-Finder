@@ -22,6 +22,16 @@ body {
     background-size: 40px 40px;
 }
 
+/* Canvas de grade interativa */
+#gridCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
 /* Efeito de distorção olho de peixe / CRT nas bordas */
 .fisheye-overlay {
     position: absolute;
@@ -29,7 +39,7 @@ body {
     left: 0; 
     width: 100%; 
     height: 100%;
-    background: radial-gradient(circle at center, transparent 35%, rgba(2, 6, 4, 0.9) 90%);
+    background: radial-gradient(circle at center, transparent 30%, rgba(2, 6, 4, 0.85) 90%);
     pointer-events: none;
     z-index: 1;
 }
@@ -40,25 +50,25 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 2;
-    gap: 40px;
+    gap: 35px;
 }
 
 /* Estilização e proporção do logo completo */
 .logo-z {
-    width: 100%;
-    max-width: 420px;
+    width: 130px;
+    max-width: 140px;
     display: flex;
     justify-content: center;
     align-items: center;
-    filter: drop-shadow(0 0 10px rgba(0, 255, 204, 0.4));
+    filter: drop-shadow(0 0 12px rgba(0, 255, 240, 0.6));
 }
 
 .logo-svg {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
-/* Caixa de pesquisa do rascunho */
+/* Search Box */
 .search-box {
     display: flex;
     align-items: center;
