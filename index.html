@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title> Zetesis the Finder</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-       <div class="logo-container">
-            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 396.99 144.75">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zetesis the Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Efeito de lente CRT / olho de peixe -->
+    <div class="fisheye-overlay"></div>
+
+    <main class="default-container">
+        <!-- Logo completo original do Illustrator -->
+        <div class="logo-z">
+           <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 396.99 144.75">
   <g id="logo_white" data-name="logo white">
     <g>
       <circle cx="5.11" cy="118.89" r="5.11" fill="#00fff0"/>
@@ -25,14 +32,19 @@
     </g>
   </g>
 </svg>
-    </div>
-        <p>Satisfy your curiosity.</p> 
-        <input type="text" placeholder="I'm searching for...">
-        <button>Click!</button>
-        <p class="blinking-text">Gathering results<span class="cursor">_</span></p>
-    <div id="results">
-        <p>...</p>
         </div>
-        <script src="app.js"></script>
-    </body>
+
+        <!-- Barra de busca minimalista com a frase e a lupa -->
+        <div class="search-box">
+            <input type="text" placeholder="Satisfy your curiosity..." id="searchInput">
+            <button type="submit" id="searchBtn" aria-label="Search">
+                <svg viewBox="0 0 24 24" class="search-icon">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#00ffcc"/>
+                </svg>
+            </button>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
 </html>

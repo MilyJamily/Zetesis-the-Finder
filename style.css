@@ -1,90 +1,106 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background-color:black;
-    color:aquamarine;
+    background-color: #020604;
+    color: #00ffcc;
     font-family: 'Courier New', Courier, monospace;
-}
-input {
-   background-color:#002b28;
-   border:2px solid aquamarine;
-   color: rgb(255, 255, 217);
-   font-family: 'Courier New', Courier, monospace;
-   padding: 5px;
-   outline: none;
-}
-button {
-    background-color:#002b28;
-    border:2px solid aquamarine;
-    cursor:pointer;
-    color: rgb(255, 255, 217);
-    font-family: 'Courier New', Courier, monospace;
-}
-button:hover {
-    background-color:aquamarine;
-}
-#results {
-    border: 2px dashed #00ff66;
-    padding: 15px;
-    margin-top: 15px;
-    background-color: rgba(0, 0, 0, 0.6);
-    max-width: 600px;
-}
-
-/* Style to aling photo and information side by side */
-.dossier-layout {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-}
-
-/* Y2K Target photo style */
-.dossier-img {
-    width: 110px;
-    height: 130px;
-    object-fit: cover;
-    border: 2px solid aquamarine;
-    filter: graysclae(40%) constrast(130%) brightness(90%);
-    box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
-}
-
-.dossier-info p {
-    margin: 8px 0;
-    line-height: 1.4;
-}
-
-/* Text and Cursor blinking effect */
-.blinking-text {
-    animation: blink 1.5s infinite;
-}
-
-.cursor {
-    display: inline-block;
-    animation: blink 1.5s infinite;
-    font-weight: bold;
-    color: aquamarine;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; } 
-}
-
-/* Container for the logo */
-.logo-container {
-    border-top: 1px solid aquamarine;
-    border-bottom: 1px solid aquamarine;
-    padding: 15px 0;
-    margin-bottom: 25px;
-    width: 50%;
+    height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    
+    /* Malha quadriculada sutil de fundo */
+    background-image: 
+        linear-gradient(to right, rgba(0, 255, 204, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 255, 204, 0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
 }
 
-/* Effects */
-.logo-container svg {
-    max-width: 260px;
+/* Efeito de distorção olho de peixe / CRT nas bordas */
+.fisheye-overlay {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 35%, rgba(2, 6, 4, 0.9) 90%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.default-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    gap: 40px;
+}
+
+/* Estilização e proporção do logo completo */
+.logo-z {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 204, 0.4));
+}
+
+.logo-svg {
+    width: 100%;
     height: auto;
-    
-    filter: drop-shadow(0 0 5px aquamarine)
-            drop-shadow(0 0 15px rgba(0, 255, 128, 0.4))
-            drop-shadow(0 0 30px rgba(0, 255, 128, 0.2))
+}
+
+/* Caixa de pesquisa do rascunho */
+.search-box {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #00ffcc;
+    background-color: rgba(2, 12, 8, 0.9);
+    padding: 8px 14px;
+    width: 360px;
+    box-shadow: 0 0 12px rgba(0, 255, 204, 0.2), inset 0 0 8px rgba(0, 255, 204, 0.1);
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #00ffcc;
+    font-family: inherit;
+    font-size: 0.95rem;
+    width: 100%;
+    padding-right: 8px;
+}
+
+.search-box input::placeholder {
+    color: rgba(0, 255, 204, 0.5);
+}
+
+.search-box button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+}
+
+.search-icon {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.2s ease;
+}
+
+.search-box button:hover .search-icon {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 5px #00ffcc);
 }

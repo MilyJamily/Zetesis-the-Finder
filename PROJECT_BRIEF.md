@@ -16,11 +16,12 @@ Public figures.
 
 ## What is the default result?
 
+- Photo
 - Name
-- Image
-- Description
+- Occupation
 - Basic information
-- Sources
+- Detailed description
+- Source
 
 ## What will be the first visualization?
 
