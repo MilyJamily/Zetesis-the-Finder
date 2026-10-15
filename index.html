@@ -9,15 +9,10 @@
 <body>
     <!-- Canvas para a malha dinâmica com efeito de lupa no mouse -->
     <canvas id="gridCanvas"></canvas>
-
-    <!-- Efeito de lente CRT / olho de peixe -->
     <div class="fisheye-overlay"></div>
 
-    <!-- VHS / Grain Effect -->
-    <div class="grain-overlay"></div>
-
-    <main class="default-container">
-        <!-- Logo minimalista Z -->
+    <!-- TELA 1: Pesquisa Default -->
+    <main class="default-container" id="searchScreen">
         <div class="logo-z">
             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 150" class="logo-svg">
                 <g>
@@ -30,7 +25,7 @@
 
         <!-- Search Box com a frase e a lupa -->
         <div class="search-box">
-            <input type="text" placeholder="Satisfy your curiosity..." id="searchInput">
+            <input type="text" placeholder="Satisfy you curiosity..." id="searchInput">
             <button type="submit" id="searchBtn" aria-label="Search">
                 <svg viewBox="0 0 24 24" class="search-icon">
                     <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#00ffcc"/>
@@ -38,6 +33,16 @@
             </button>
         </div>
     </main>
+
+    <!-- TELA 2: Resultados da Pesquisa -->
+     <section class="results-page" id="resultsSection">
+        <!-- Botão X fechar -->
+        <button id="btn-reset-search" class="neon-back-btn" style="display: none;"> 
+            <span class="icon">[ X ]</span> New Search
+        </button>
+        
+        <!-- Linhas e título animado -->
+     </section>
 
     <script src="app.js"></script>
 </body>

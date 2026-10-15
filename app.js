@@ -19,7 +19,7 @@ window.addEventListener('mousemove', (e) => {
 resize();
 
 const gridSize = 40;
-const radius = 120;
+const radius = 130;
 const maxDistortion = 25;
 
 function drawGrid() {
@@ -74,27 +74,48 @@ function drawGrid() {
 
 drawGrid();
 
-
-// --- 2. LÓGICA DE PESQUISA (Search Box) ---
+// Pesquisa e Scroll //
+const searchScreen = document.getElementById('searchScreen');
+const resultsSection = document.getElementById('resultsSection');
+const closeBtn = document.getElementById('closeBtn');
 const searchInput = document.getElementById('searchInput');
-const searchBtn = document.getElementById('searchBtn');
+const searchBtn = document.getElementById('searchBtn')
 
-function executeSearch() {
+function openResults() {
     const query = searchInput.value.trim();
     if (query !== "") {
-        console.log("Pesquisando por: " + query);
-        // Aqui você pode colocar a lógica para transicionar para a tela de resultados do rascunho inferior!
-        // Exemplo temporário: alert ou redirecionamento
-        alert("Buscando dados sobre: " + query);
+        console.log("Investigating: " + query);
+
+        // Transição
+        searchScreen.style.opacity = '0';
+        resultsSection.style.pointerEvents = 'none';
+
+        resultsSection.classList.add('active');
+
+        // Animação das linhas e título tela 2 //
     }
 }
 
-// Disparar ao clicar na lupa
-searchBtn.addEventListener('click', executeSearch);
+function handleSearch(e) {
+    if (e) e.preventDefault(); 
+    const query = searchInput.value.trim();
+    if (query !== "") {
+        console.log("Investigating: " + query);
 
-// Disparar ao apertar 'Enter' no input
+        searchScreen.style.opacity = '0';
+        searchScreen.style.pointerEvents = 'none';
+
+        resultsSection.classList.add('active');
+    }
+}
+
+// Click e Enter
+searchBtn.addEventListener('click', handleSearch);
+
 searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        executeSearch();
+        handleSearch(e);
     }
 });
+
+// Botão X para voltar
