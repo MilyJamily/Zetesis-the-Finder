@@ -74,48 +74,64 @@ function drawGrid() {
 
 drawGrid();
 
-// Pesquisa e Scroll //
+// Pesquisa e controle das telas
 const searchScreen = document.getElementById('searchScreen');
-const resultsSection = document.getElementById('resultsSection');
+const resltsSection = document.getElementById('resultsSection');
 const closeBtn = document.getElementById('closeBtn');
 const searchInput = document.getElementById('searchInput');
-const searchBtn = document.getElementById('searchBtn')
+const searchBtn = document.getElementById('searchBtn');
 
-function openResults() {
+function showResults() {
     const query = searchInput.value.trim();
-    if (query !== "") {
-        console.log("Investigating: " + query);
 
-        // Transição
-        searchScreen.style.opacity = '0';
-        resultsSection.style.pointerEvents = 'none';
-
-        resultsSection.classList.add('active');
-
-        // Animação das linhas e título tela 2 //
+    if (query === "") {
+        searchInput.focus();
+        return;
     }
+
+    console.log("Investigating: " + query);
+
+    searchScreen.style.opacity = '0';
+    searchScreen.style.pointerEvents = 'none';
+
+    // Página de results
+    resultsSection.classList.add('active');
+
+    // Restuls page elements
+
+    // Back to homepage
+    closeBtn.focus();
 }
 
-function handleSearch(e) {
-    if (e) e.preventDefault(); 
-    const query = searchInput.value.trim();
-    if (query !== "") {
-        console.log("Investigating: " + query);
+function hideResults() {
+    resultsSection.classList.remove('active');
 
-        searchScreen.style.opacity = '0';
-        searchScreen.style.pointerEvents = 'none';
+    // Restaura página inicial
+    searchScreen.style.opacity = '1'
+    searchScreen.style.pointerEvents = 'auto'
 
-        resultsSection.classList.add('active');
-    }
+    searchInput.value = '';
+
+    searchInput.focus();
 }
 
-// Click e Enter
-searchBtn.addEventListener('click', handleSearch);
+// Clique na lupa
+searchBtn.addEventListener('click', showResults);
 
-searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        handleSearch(e);
+// Enter
+searchInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        showResults();
     }
 });
 
-// Botão X para voltar
+// X Button
+closeBtn.addEventListener('click', hideResults);
+
+// Esc
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && resultsSection.classList.contains('active')) {
+        hideResults();
+    }
+});
