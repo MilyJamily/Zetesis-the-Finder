@@ -89,8 +89,6 @@ function showResults() {
         return;
     }
 
-    console.log("Investigating: " + query);
-
     searchScreen.style.opacity = '0';
     searchScreen.style.pointerEvents = 'none';
 
@@ -106,13 +104,13 @@ function showResults() {
 function hideResults() {
     resultsSection.classList.remove('active');
 
-    // Restaura página inicial
-    searchScreen.style.opacity = '1'
-    searchScreen.style.pointerEvents = 'auto'
-
     searchInput.value = '';
 
-    searchInput.focus();
+    setTimeout(function () {
+        searchScreen.style.opacity = '1';
+        searchScreen.style.pointerEvents = 'auto';
+        searchInput.focus();
+    }, 400);
 }
 
 // Clique na lupa
