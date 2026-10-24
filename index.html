@@ -2,64 +2,418 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Zetesis the Finder</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <!-- Canvas para a malha dinâmica com efeito de lupa no mouse -->
+
+    <!-- Malha dinâmica de fundo -->
     <canvas id="gridCanvas"></canvas>
     <div class="fisheye-overlay"></div>
 
-    <!-- TELA 1: Pesquisa Default -->
-    <main class="default-container" id="searchScreen">
+
+    <!-- TELA 1: Pesquisa inicial -->
+    <main
+        class="default-container"
+        id="searchScreen"
+    >
         <div class="logo-z">
-            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 150" class="logo-svg">
+            <svg
+                id="Layer_1"
+                data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 130 150"
+                class="logo-svg"
+            >
                 <g>
-                    <circle cx="5.11" cy="118.89" r="5.11" fill="#00fff0"/>
-                    <circle cx="114.13" cy="24.94" r="5.11" fill="#00fff0"/>
-                    <polyline points="111.68 29.11 42.24 126.64 108.62 126.64 108.62 119.49 123.94 119.49 123.94 144 10.83 144 107.85 0 9.05 0 9.05 17.11 24.62 17.11 24.62 10.47 83.85 10.47 8.28 114.89" fill="#00fff0"/>
+                    <circle
+                        cx="5.11"
+                        cy="118.89"
+                        r="5.11"
+                        fill="#00fff0"
+                    />
+
+                    <circle
+                        cx="114.13"
+                        cy="24.94"
+                        r="5.11"
+                        fill="#00fff0"
+                    />
+
+                    <polyline
+                        points="
+                            111.68 29.11
+                            42.24 126.64
+                            108.62 126.64
+                            108.62 119.49
+                            123.94 119.49
+                            123.94 144
+                            10.83 144
+                            107.85 0
+                            9.05 0
+                            9.05 17.11
+                            24.62 17.11
+                            24.62 10.47
+                            83.85 10.47
+                            8.28 114.89
+                        "
+                        fill="#00fff0"
+                    />
                 </g>
             </svg>
         </div>
 
-        <!-- Search Box com a frase e a lupa -->
+
+        <!-- Search box -->
         <div class="search-box">
-            <input type="text" placeholder="Satisfy you curiosity..." id="searchInput">
-            <button type="submit" id="searchBtn" aria-label="Search">
-                <svg viewBox="0 0 24 24" class="search-icon">
-                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#00ffcc"/>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Satisfy your curiosity..."
+            >
+
+            <button
+                type="button"
+                id="searchBtn"
+                aria-label="Search"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    class="search-icon"
+                >
+                    <path
+                        d="
+                            M15.5 14h-.79l-.28-.27
+                            C15.41 12.59 16 11.11 16 9.5
+                            16 5.91 13.09 3 9.5 3
+                            S3 5.91 3 9.5
+                            5.91 16 9.5 16
+                            c1.61 0 3.09-.59 4.23-1.57
+                            l.27.28v.79l5 4.99
+                            L20.49 19l-4.99-5z
+                            M9.5 14C7.01 14 5 11.99 5 9.5
+                            S7.01 5 9.5 5
+                            14 7.01 14 9.5
+                            11.99 14 9.5 14z
+                        "
+                        fill="#00ffcc"
+                    />
                 </svg>
             </button>
         </div>
     </main>
 
-    <!-- TELA 2: Resultados da Pesquisa -->
-     <section class="results-page" id="resultsSection">
 
+    <!-- TELA 2: Resultados -->
+    <section
+        class="results-page"
+        id="resultsSection"
+    >
+
+        <!-- Cabeçalho -->
         <header class="results-header">
             <span class="header-line"></span>
 
-            <h1 class="results-title" data-text="Zetesis the Finder">
+            <h1
+                class="results-title"
+                data-text="Zetesis the Finder"
+            >
                 Zetesis the Finder
             </h1>
 
             <span class="header-line"></span>
         </header>
 
-         <div class="results-content">
-            <article class="info-card">
-                <div class="card-placeholder">
-                    Container 1
-                </div>
-            </article>
+
+        <!-- Grid principal dos resultados -->
+        <div class="results-layout">
+
+    <!-- CARD 1: Principal -->
+    <article class="main-card">
+
+        <div class="main-card-header">
+            <div class="profile-photo">
+                PHOTO
+            </div>
+
+            <div class="profile-info">
+                <h2>Name</h2>
+                <p>Occupation</p>
+            </div>
         </div>
 
-        <button class="close-btn" id="closeBtn" type="button"> 
+        <p class="main-description">
+            Short description about the search
+        </p>
+
+        <div class="main-card-actions">
+            <button
+                id="lessBtn"
+                class="card-action-button"
+                type="button"
+                aria-label="Show less"
+            >
+                -
+            </button>
+
+            <button
+                id="moreBtn"
+                class="card-action-button"
+                type="button"
+                aria-label="Show more"
+            >
+                +
+            </button>
+        </div>
+
+    </article>
+
+
+    <!-- CARDS 2 E 3: Coluna central -->
+    <div class="secondary-cards">
+
+        <!-- CARD 3: Imagens -->
+        <article
+            class="images-card"
+            id="imagesCard"
+        >
+            <span class="card-label">IMAGES</span>
+
+            <div class="landscape-row">
+                <div class="gallery-item landscape-item">
+                    <span>Landscape</span>
+                </div>
+            </div>
+
+            <div class="portraits-row">
+                <div class="gallery-item portrait-item">
+                    <span>Portrait 1</span>
+                </div>
+
+                <div class="gallery-item portrait-item">
+                    <span>Portrait 2</span>
+                </div>
+            </div>
+
+            <div class="small-images-row">
+                <div class="gallery-item small-item">
+                    <span>Small 1</span>
+                </div>
+
+                <div class="gallery-item small-item">
+                    <span>Small 2</span>
+                </div>
+
+                <div class="gallery-item small-item">
+                    <span>Small 3</span>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- CARD 2: Status -->
+        <article
+            class="status-card"
+            id="statusCard"
+        >
+            <span class="card-label">STATUS</span>
+
+            <h2 id="statusText">
+                Loading...
+            </h2>
+
+            <div class="loading-area">
+                <div class="loading-track">
+                    <div
+                        class="loading-progress"
+                        id="loadingProgress"
+                    ></div>
+                </div>
+
+                <span
+                    class="loading-percentage"
+                    id="loadingPercentage"
+                >
+                    0%
+                </span>
+            </div>
+        </article>
+
+    </div>
+
+
+    <!-- COLUNA DIREITA: Cards 4 e 5 -->
+    <div class="details-column">
+
+        <!-- CARD 4: Detalhes -->
+        <article
+            class="details-card"
+            id="detailsCard"
+        >
+            <div class="details-tabs">
+                <button
+                    class="details-tab"
+                    id="factsTab"
+                    type="button"
+                    data-tab="facts"
+                >
+                    Facts
+                </button>
+
+                <button
+                    class="details-tab"
+                    id="timelineTab"
+                    type="button"
+                    data-tab="timeline"
+                >
+                    Timeline
+                </button>
+
+                <button
+                    class="details-tab"
+                    id="overviewTab"
+                    type="button"
+                    data-tab="overview"
+                >
+                    Overview
+                </button>
+            </div>
+
+            <div class="details-content">
+
+                <section
+                    class="details-panel facts-panel"
+                    id="factsPanel"
+                    data-panel="facts"
+                >
+                    <ul class="facts-list">
+                        <li>Fact 1</li>
+                        <li>Fact 2</li>
+                        <li>Fact 3</li>
+                        <li>Fact 4</li>
+                        <li>Fact 5</li>
+                    </ul>
+                </section>
+
+                <section
+                    class="details-panel timeline-panel"
+                    id="timelinePanel"
+                    data-panel="timeline"
+                >
+                    <div class="timeline-item">
+                        <span class="timeline-year">2018</span>
+                        <span class="timeline-line"></span>
+                        <span class="timeline-event">
+                            Evento inicial
+                        </span>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-year">2020</span>
+                        <span class="timeline-line"></span>
+                        <span class="timeline-event">
+                            Mudança importante
+                        </span>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-year">2024</span>
+                        <span class="timeline-line"></span>
+                        <span class="timeline-event">
+                            Situação atual
+                        </span>
+                    </div>
+                </section>
+
+                <section
+                    class="details-panel overview-panel"
+                    id="overviewPanel"
+                    data-panel="overview"
+                >
+                    <p
+                        class="overview-text"
+                        id="overviewText"
+                    ></p>
+                </section>
+
+            </div>
+
+            <footer class="details-source">
+                <span>Source</span>
+
+                <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open source"
+                >
+                    <span class="external-link-icon">↗</span>
+                </a>
+            </footer>
+        </article>
+
+
+        <!-- CARD 5: Files -->
+        <article
+            class="files-card"
+            id="filesCard"
+            aria-label="Related files"
+        >
+            <span class="card-label">
+                FILES
+            </span>
+
+            <div class="files-list">
+
+                <div class="file-folder">
+                    <span class="folder-tab"></span>
+                    <span class="folder-icon">▰</span>
+                    <span class="folder-name">
+                        File 01
+                    </span>
+                </div>
+
+                <div class="file-folder">
+                    <span class="folder-tab"></span>
+                    <span class="folder-icon">▰</span>
+                    <span class="folder-name">
+                        File 02
+                    </span>
+                </div>
+
+                <div class="file-folder">
+                    <span class="folder-tab"></span>
+                    <span class="folder-icon">▰</span>
+                    <span class="folder-name">
+                        File 03
+                    </span>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+</div>
+
+        <!-- Botão para fechar os resultados -->
+        <button
+            class="close-btn"
+            id="closeBtn"
+            type="button"
+            aria-label="Close results"
+        >
             &times;
         </button>
 
-     </section>
+    </section>
+
 
     <script src="app.js"></script>
 </body>
