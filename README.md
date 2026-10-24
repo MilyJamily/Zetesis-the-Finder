@@ -1,6 +1,6 @@
 # Zetesis-the-Finder
 
-![alt text](image.png)
+<img width="1596" height="788" alt="ZetesistheFinder" src="https://github.com/user-attachments/assets/c9c0a29a-9eef-481d-b59d-385e5439768a" />
 
 Do you ever get annoyed by having dozens of tabs open (and your browser starting to crash) just because your *curiosity* couldn't stop asking for more?
 
@@ -11,7 +11,8 @@ It is an immersive and intuitive website designed to ***satisfy your curiosity**
 
 You could say it's a better version of Wikipedia — you'll feel like an actual detective!
 
-![alt text](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTY2dmVsMjZ1bTFidWE4amE2dHJ3cG9hcTJ1Y3ZmbHI4NTg2eHY4NCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ZmrLi7eC703u/giphy.gif)
+<img width="1550" height="785" alt="AfterSearch" src="https://github.com/user-attachments/assets/aa4ba229-4d09-46c2-9f89-5293f5f7fe97" />
+Here's what it looks like
 
 ## Why should I use it?
 
