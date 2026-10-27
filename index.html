@@ -359,7 +359,6 @@
             </footer>
         </article>
 
-
         <!-- CARD 5: Files -->
         <article
             class="files-card"
@@ -372,27 +371,27 @@
 
             <div class="files-list">
 
-                <div class="file-folder">
+                <div class="file-folder" data-file="summary">
                     <span class="folder-tab"></span>
                     <span class="folder-icon">▰</span>
                     <span class="folder-name">
-                        File 01
+                        SUMMARY.LOG
                     </span>
                 </div>
 
-                <div class="file-folder">
+                <div class="file-folder" data-file="sources">
                     <span class="folder-tab"></span>
                     <span class="folder-icon">▰</span>
                     <span class="folder-name">
-                        File 02
+                        SOURCES.SYS
                     </span>
                 </div>
 
-                <div class="file-folder">
+                <div class="file-folder" data-file="export">
                     <span class="folder-tab"></span>
                     <span class="folder-icon">▰</span>
                     <span class="folder-name">
-                        File 03
+                        EXPORT_DOSSIER.TXT
                     </span>
                 </div>
             </div>
@@ -414,6 +413,16 @@
 
     </section>
 
+<!-- CONFIDENTIAL FILE MODAL -->
+<div id="fileModal" class="file-modal">
+    <div class="file-modal-content">
+        <span class="file-modal-close" id="closeFileModal">&times;</span>
+        <h3 id="modalTitle">FILE_LOG.TXT</h3>
+        <hr class="modal-divider">
+        <div id="modalBody" class="modal-body"></div>
+        <div id="modalFooter" class="modal-footer"></div>
+    </div>
+</div>
 
     <script src="app.js"></script>
 </body>

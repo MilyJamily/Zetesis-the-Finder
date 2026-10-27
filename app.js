@@ -474,5 +474,117 @@ moreBtn.addEventListener('click', () => {
 });
 
 lessBtn.addEventListener('click', () => {
-    resetLoading();
+    imagesCard.classList.remove('is-visible');
+    detailsCard.classList.remove('is-visible');
+    statusCard.classList.remove('is-visible');
+    filesCard.classList.remove('is-visible');
+
+    if (loadingAnimationId !== null) {
+        cancelAnimationFrame(loadingAnimationId);
+        loadingAnimationId = null;
+    }
+
+    moreBtn.setAttribute('aria-expanded', 'false');
 });
+
+// --- 6. ARCHIVE FILES INTERACTION ---
+const fileModal = document.getElementById('fileModal');
+const closeFileModal = document.getElementById('closeFileModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalBody = document.getElementById('modalBody');
+const modalFooter = document.getElementById('modalFooter');
+const fileFolders = document.querySelectorAll('.file-folder');
+
+fileFolders.forEach((folder) => {
+    folder.addEventListener('click', () => {
+        const query = searchInput.value.trim() || 'SUBJECT';
+        const fileType = folder.dataset.file;
+        const targetName = document.querySelector('.profile-info h2').textContent || query;
+        const occupation = document.querySelector('.profile-info p').textContent || 'CLASSIFIED';
+        const description = document.querySelector('.main-description').textContent || '';
+
+        modalFooter.innerHTML = '';
+
+        if (fileType === 'summary') {
+            modalTitle.textContent = 'SUMMARY.LOG';
+            modalBody.innerHTML = `
+                <p><strong>[SYSTEM INTELLIGENCE REPORT]</strong></p><br>
+                <p><strong>TARGET:</strong> ${targetName}</p>
+                <p><strong>CLASSIFICATION:</strong> ${occupation}</p><br>
+                <p><strong>BRIEF:</strong> ${description}</p><br>
+                <p style="color: rgba(0, 255, 204, 0.5);">Status: Verified and indexed in Zetesis database.</p>
+            `;
+            fileModal.classList.add('is-open');
+
+        } else if (fileType === 'sources') {
+            modalTitle.textContent = 'SOURCES.SYS';
+            modalBody.innerHTML = `
+                <p><strong>[EXTERNAL SOURCES NETWORK]</strong></p><br>
+                <p>Active references compiled for <strong>${targetName}</strong>:</p><br>
+                <ul style="padding-left: 18px;">
+                    <li>Wikipedia Knowledge Graph (REST API)</li>
+                    <li>Google Search Index</li>
+                    <li>Zetesis Neural Archive</li>
+                </ul>
+            `;
+            fileModal.classList.add('is-open');
+
+        } else if (fileType === 'export') {
+            modalTitle.textContent = 'EXPORT_DOSSIER.TXT';
+            modalBody.innerHTML = `
+                <p><strong>[FILE EXPORT CONFIRMATION]</strong></p><br>
+                <p>Ready to generate downloadable dossier file for <strong>${targetName}</strong>.</p>
+                <p>Click below to download <code>${query.toLowerCase()}_dossier.txt</code> to your local device.</p>
+            `;
+
+            const btn = document.createElement('button');
+            btn.className = 'download-btn';
+            btn.textContent = 'DOWNLOAD DOSSIER';
+            btn.addEventListener('click', () => {
+                downloadDossierText(targetName, occupation, description);
+            });
+
+            modalFooter.appendChild(btn);
+            fileModal.classList.add('is-open');
+        }
+    });
+});
+
+function downloadDossierText(name, occupation, description) {
+    const timestamp = new Date().toISOString();
+    const content = `==================================================
+ZETESIS THE FINDER - CONFIDENTIAL DOSSIER
+==================================================
+Target: ${name}
+Role/Status: ${occupation}
+Timestamp: ${timestamp}
+--------------------------------------------------
+SUMMARY:
+${description}
+
+==================================================
+END OF DOSSIER - ZETESIS ARCHIVE SYSTEM
+==================================================`;
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${name.replace(/\s+/g, '_')}_dossier.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+if (closeFileModal) {
+    closeFileModal.addEventListener('click', () => {
+        fileModal.classList.remove('is-open');
+    });
+}
+
+if (fileModal) {
+    fileModal.addEventListener('click', (e) => {
+        if (e.target === fileModal) {
+            fileModal.classList.remove('is-open');
+        }
+    });
+}
